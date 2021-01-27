@@ -95,16 +95,16 @@
 
           const depositbtn = document.getElementById("depositbtn");
           depositbtn.addEventListener("click", function(){
-          const depositAmount = document.getElementById("depositAmount").value;
-          const depositTotal = parseFloat(depositAmount);
+        
+        const depositTotal= getInputNumber("depositAmount");
 
         //   const currentDeposit= document.getElementById("current-deposit").innerText;
         //   const currentDepositNumber= parseFloat(currentDeposit);
         //   const total= depositTotal+currentDepositNumber;
         //   console.log(total);
         //   document.getElementById("current-deposit").innerText = total;
-        //   document.getElementById("depositAmount").value= "";
-        updateSpanText("current-deposit", depositTotal);
+          document.getElementById("depositAmount").value= "";
+        updateSpanText ("current-deposit", depositTotal);
 
 
         //   const balance = document.getElementById("balance").innerText;
@@ -113,15 +113,25 @@
         //   const totalBalance= total+newBalance;
         // //   console.log(totalBalance);
         //   document.getElementById("balance").innerText= totalBalance;
-          updateSpanText("balance", depositTotal)
+          updateSpanText("balance", depositTotal);
       })
 
     //   withdraw button handler
     const withdraw = document.getElementById("withdraw-btn");
     withdraw.addEventListener("click", function(){
-        const withdrawAmount= document.getElementById("withdrawAmount").value;
-        const withdrawTotal = parseFloat(withdrawAmount);
+       const withdrawTotal = getInputNumber("withdrawAmount");
+       document.getElementById("withdrawAmount").value= "";
+        updateSpanText("withdraw", withdrawTotal);
+        updateSpanText("balance", -1*withdrawTotal);
+        
     })
+
+    function getInputNumber(id){
+        const amount= document.getElementById(id).value;
+        const amountNumber = parseFloat(amount);
+        return amountNumber;
+
+    }
 
 
       function updateSpanText(id, depositTotal){
